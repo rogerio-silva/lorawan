@@ -19,6 +19,7 @@
  *         Martina Capuzzo <capuzzom@dei.unipd.it>
  *
  * Modified by: Peggy Anderson <peggy.anderson@usask.ca>
+ * Modified by: Rogério S. Silva <rogerio.sousa@ifg.edu.br>
  */
 
 #ifndef END_DEVICE_LORAWAN_MAC_H
@@ -153,11 +154,32 @@ public:
   uint8_t GetDataRate (void);
 
   /**
+   * Set the coding rate this end device will use when transmitting. For End
+   * Devices, this value is assumed to be fixed, and can be modified via MAC
+   * commands issued by the GW.
+   *
+   * \param dataRate The dataRate to use when transmitting.
+   */
+  void SetCodingRate (uint8_t codingRate);
+  /**
+   * Get the Coding Rate this end device is set to use.
+   *
+   * \return The Coding rate this device uses when transmitting.
+   */
+  uint8_t GetCodingRate (void);
+
+
+  /**
    * Get the transmission power this end device is set to use.
    *
    * \return The transmission power this device uses when transmitting.
    */
   virtual uint8_t GetTransmissionPower (void);
+
+  /**
+   * Set the transmission power to this end device.
+   */
+  void SetTransmissionPower(uint8_t txPower);
 
   /**
    * Set the network address of this device.

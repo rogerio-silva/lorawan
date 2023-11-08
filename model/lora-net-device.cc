@@ -94,6 +94,25 @@ LoraNetDevice::GetPhy (void) const
 }
 
 void
+LoraNetDevice::SetSlice (uint8_t slice)
+{
+  m_slice_id = slice;
+}
+
+uint8_t
+LoraNetDevice::GetSlice (void) const
+{
+  return m_slice_id;
+}
+
+std::string LoraNetDevice::SliceToString(SliceType sliceType)
+{
+  std::string sliceTypeString[3] = {"URA_SLICE","RA_SLICE","BE_SLICE"};
+
+  return sliceTypeString[sliceType];
+}
+
+void
 LoraNetDevice::CompleteConfig (void)
 {
   NS_LOG_FUNCTION_NOARGS ();

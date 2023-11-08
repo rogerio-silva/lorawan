@@ -46,6 +46,9 @@ class LoraNetDevice : public NetDevice
 public:
   static TypeId GetTypeId (void);
 
+  // Slice type enumeration
+  enum SliceType { URA_SLICE, RA_SLICE, BE_SLICE };
+
   // Constructor and destructor
   LoraNetDevice ();
   virtual ~LoraNetDevice ();
@@ -77,6 +80,27 @@ public:
    * \return the phy we are currently using.
    */
   Ptr<LoraPhy> GetPhy (void) const;
+
+  /**
+   * Set which slice on the gateway this this device is linked to.
+   *
+   * \param slice identification to use.
+   */
+  void SetSlice (uint8_t slice);
+
+  /**
+   * Get the slice string
+   *
+   * \return the slice string
+   */
+  std::string SliceToString(SliceType sliceType);
+
+  /**
+   * Get the slice on the gateway this NetDevice is linked to.
+   *
+   * \return the slice identification we are currently using.
+   */
+  uint8_t GetSlice (void) const;
 
   /**
    * Send a packet through the LoRaWAN stack.
@@ -153,6 +177,7 @@ private:
   Ptr<Node> m_node; //!< The Node this NetDevice is connected to.
   Ptr<LoraPhy> m_phy; //!< The LoraPhy this NetDevice is connected to.
   Ptr<LorawanMac> m_mac; //!< The LorawanMac this NetDevice is connected to.
+  uint8_t m_slice_id; //!< Slice identification this NetDevice is connected to.
   bool m_configComplete; //!< Whether the configuration was already completed.
 
   /**

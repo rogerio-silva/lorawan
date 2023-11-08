@@ -19,6 +19,7 @@
  *         Martina Capuzzo <capuzzom@dei.unipd.it>
  *
  * Modified by: Peggy Anderson <peggy.anderson@usask.ca>
+ * Modified by: Rogério S. Silva <rogerio.sousa@ifg.edu.br>
  */
 
 #include "ns3/end-device-lorawan-mac.h"
@@ -929,6 +930,26 @@ uint8_t
 EndDeviceLorawanMac::GetTransmissionPower (void)
 {
   return m_txPower;
+}
+
+void EndDeviceLorawanMac::SetTransmissionPower(uint8_t txPower){
+  m_txPower = txPower;
+}
+
+
+
+void
+EndDeviceLorawanMac::SetCodingRate (uint8_t codingRate)
+{
+  NS_LOG_FUNCTION (this << unsigned (codingRate));
+
+  m_codingRate = codingRate;
+}
+
+uint8_t
+EndDeviceLorawanMac::GetCodingRate (void)
+{
+  return m_codingRate;
 }
 }
 }
