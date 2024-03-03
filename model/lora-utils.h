@@ -55,7 +55,19 @@ double WToDbm (double w);
  */
 double RatioToDb (double ratio);
 
+/**
+ * Convert from SF to DR.
+ *
+ * \param SF
+ *
+ * \return DR
+ */
+uint8_t SFToDR (uint8_t sf);
+uint8_t DRToSF (uint8_t dr);
+
 }   // namespace ns3
 
 }
+
+
 #endif /* LORA_UTILS_H */

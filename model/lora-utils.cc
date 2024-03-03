@@ -45,5 +45,25 @@ RatioToDb (double ratio)
   return 10.0 * std::log10 (ratio);
 }
 
+uint8_t SFToDR (uint8_t sf)
+{
+  // UE - 863-870 kHz table
+  // DR 0 to 5 - SF 12 to 7 - 125 kHz
+  // DR 6 - SF 7 - 250 kHz
+  // This LoRaWAN module only implements 125 kHz.
+  return (12 - sf);
+}
+
+uint8_t DRToSF (uint8_t dr)
+{
+  // UE - 863-870 kHz table
+  // DR 0 to 5 - SF 12 to 7 - 125 kHz
+  // DR 6 - SF 7 - 250 kHz
+  // This LoRaWAN module only implements 125 kHz.
+
+  std::vector<uint8_t> sf = { 12, 11, 10, 9, 8, 7, 7 };
+  return sf.at (unsigned(dr));
+}
+
 }
 } //namespace ns3

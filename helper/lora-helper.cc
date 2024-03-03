@@ -19,6 +19,7 @@
  */
 
 #include "ns3/lora-helper.h"
+#include "ns3/lora-utils.h"
 #include "ns3/log.h"
 
 #include <fstream>
@@ -227,18 +228,18 @@ LoraHelper::DoPrintDeviceStatus (NodeContainer endDevices, NodeContainer gateway
       Vector pos = position->GetPosition ();
       outputFile << currentTime.GetSeconds () << " "
                  << object->GetId () <<  " "
-                 << pos.x << " " << pos.y << " " << dr << " "
+                 << pos.x << " " << pos.y << " " << std::to_string(DRToSF(dr)) << " "
                  << unsigned(txPower) << std::endl;
     }
-  // for (NodeContainer::Iterator j = gateways.Begin (); j != gateways.End (); ++j)
-  //   {
-  //     Ptr<Node> object = *j;
-  //     Ptr<MobilityModel> position = object->GetObject<MobilityModel> ();
-  //     Vector pos = position->GetPosition ();
-  //     outputFile << currentTime.GetSeconds () << " "
-  //                << object->GetId () <<  " "
-  //                << pos.x << " " << pos.y << " " << "-1 -1" << std::endl;
-  //   }
+   for (NodeContainer::Iterator j = gateways.Begin (); j != gateways.End (); ++j)
+     {
+       Ptr<Node> object = *j;
+       Ptr<MobilityModel> position = object->GetObject<MobilityModel> ();
+       Vector pos = position->GetPosition ();
+       outputFile << currentTime.GetSeconds () << " "
+                  << object->GetId () <<  " "
+                  << pos.x << " " << pos.y << " " << "-1 -1" << std::endl;
+     }
   outputFile.close ();
 }
 
